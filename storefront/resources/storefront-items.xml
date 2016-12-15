@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+  ~ [y] hybris Platform
+  ~ 
+  ~ Copyright (c) 2000-2016 SAP SE
+  ~ All rights reserved.
+  ~ 
+  ~ This software is the confidential and proprietary information of SAP 
+  ~ Hybris ("Confidential Information"). You shall not disclose such 
+  ~ Confidential Information and shall use it only in accordance with the 
+  ~ terms of the license agreement you entered into with SAP Hybris.
+  -->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:noNamespaceSchemaLocation="items.xsd">
+
+	<enumtypes>
+		<enumtype code="Serverity" autocreate="true" generate="true" dynamic="false">
+			<value code="S1"/>
+			<value code="S2"/>
+			<value code="S3"/>
+			<value code="S4"/>
+		</enumtype>
+	</enumtypes>
+
+	<relations>
+	    <relation code="BugCommentRelation" localized="false" generate="true" autocreate="true">
+	       <sourceElement type="Bug" qualifier="bug" cardinality="one" />
+	       <targetElement type="BugComment" qualifier="bugComments" cardinality="many"/> 
+	    </relation>
+	    <relation code="BugUserCommentRelation" localized="false" generate="true" autocreate="true">
+	       <sourceElement type="BugUser" qualifier="bugUser" cardinality="one" />
+	       <targetElement type="BugComment" qualifier="bugComments" cardinality="many"/> 
+	    </relation>
+	</relations>
+
+	<itemtypes>
+		<itemtype code="Bug" generate="true" autocreate="true">
+			<deployment table="StoreFrontBug" typecode="20000"/>
+			<attributes>
+				<attribute type="java.lang.String" qualifier="title">
+					<persistence type="property"/>
+					<description>Title</description>
+				</attribute>
+				<attribute type="Serverity" qualifier="severity">
+					<persistence type="property"/>
+					<defaultvalue>em().getEnumerationValue("Serverity","S1")</defaultvalue>
+				</attribute>
+				<attribute type="java.lang.String" qualifier="assign">
+					<persistence type="property"/>
+					<description>Bug Assign to</description>
+				</attribute>
+				<attribute type="java.lang.String" qualifier="desc">
+					<persistence type="property"/>
+					<description>Description</description>
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		<itemtype code="BugComment" generate="true" autocreate="true">
+			<deployment table="StoreFrontBugComment" typecode="20001"/>
+			<attributes>
+				<attribute type="java.util.Date" qualifier="date">
+					<persistence type="property"/>
+					<description>Date</description>
+				</attribute>
+				<attribute type="java.lang.String" qualifier="commentContent">
+					<persistence type="property"/>
+					<description>Comment Content</description>
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		<itemtype code="BugUser">
+			<deployment table="StoreFrontBugUser" typecode="19999"/>
+			<attributes>
+				<attribute type="java.lang.Integer" qualifier="bugUserId">
+					<persistence type="property"/>
+					<description>BugUserId</description>
+				</attribute>
+				<attribute type="java.lang.String" qualifier="bugUserName">
+					<persistence type="property"/>
+					<description>BugUserName</description>
+				</attribute>
+			</attributes>
+		</itemtype>
+	</itemtypes>
+	
+</items>

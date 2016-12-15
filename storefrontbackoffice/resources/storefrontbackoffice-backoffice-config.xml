@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  ~ [y] hybris Platform
+  ~
+  ~ Copyright (c) 2000-2015 hybris AG
+  ~ All rights reserved.
+  ~
+  ~ This software is the confidential and proprietary information of hybris
+  ~ ("Confidential Information"). You shall not disclose such Confidential
+  ~ Information and shall use it only in accordance with the terms of the
+  ~ license agreement you entered into with hybris.
+  -->
+
+<config xmlns="http://www.hybris.com/cockpit/config">
+
+	<context component="explorer-tree" merge-by="module">
+      <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+            <n:navigation-node id="Storefront">
+                <n:type-node id="Bugs" code="Bug" />
+                <n:type-node id="BugComments" code="BugComment" />
+                <n:type-node id="BugUsers" code="BugUser" />
+            </n:navigation-node>
+        </n:explorer-tree>
+	</context>
+	
+	<context type="Bug" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="title"/>
+	        <list:column qualifier="severity"/>
+	        <list:column qualifier="assign"/>
+	        <list:column qualifier="desc"/>
+	    </list:list-view>
+	</context>
+	
+	<context type="BugComment" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="date"/>
+	        <list:column qualifier="commentContent"/>
+	    </list:list-view>
+	</context>
+	
+	<context type="BugUser" component="listview">
+	    <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+	        <list:column qualifier="bugUserId"/>
+	        <list:column qualifier="bugUserName"/>
+	    </list:list-view>
+	</context>
+	
+</config>

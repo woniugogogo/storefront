@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://www.zeroturnaround.com">
+  <classpath>
+    <dir name="/Users/woniu/woniuLibrary/hybris6/hybris/bin/custom/storefrontbackoffice/backoffice/classes" />
+  </classpath>
+</application>
