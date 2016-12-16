@@ -12,6 +12,7 @@
 package de.hybris.platform.storefront.facade.impl;
 
 import de.hybris.platform.storefront.data.BugData;
+import de.hybris.platform.storefront.enums.Serverity;
 import de.hybris.platform.storefront.facade.BugFacade;
 import de.hybris.platform.storefront.model.BugModel;
 import de.hybris.platform.storefront.service.BugService;
@@ -75,5 +76,38 @@ public class DefaultBugFacade implements BugFacade
 
 		return bugDatas;
 	}
+
+	@Override
+	public void addBug(final BugData bugData)
+	{
+		final BugModel bm = new BugModel();
+		bm.setTitle(bugData.getTitle());
+		bm.setAssign(bugData.getAssign());
+		bm.setSeverity(Serverity.valueOf(bugData.getSeverity()));
+		bm.setDesc(bugData.getDesc());
+		bugService.addBug(bm);
+	}
+
+	@Override
+	public void editBugByTitle(final String title, final BugData bugData)
+	{
+		//find bugModel which u want edit
+		final BugModel bm = bugService.editBugByTitle(title);
+		//edit
+		bm.setTitle(bugData.getTitle());
+		bm.setAssign(bugData.getAssign());
+		bm.setSeverity(Serverity.valueOf(bugData.getSeverity()));
+		bm.setDesc(bugData.getDesc());
+		bugService.editBugByTitle(title);
+	}
+
+	@Override
+	public void deleteBugByTitle(final String title)
+	{
+		bugService.deleteBugByTitle(title);
+
+	}
+
+
 
 }

@@ -11,12 +11,15 @@
  */
 package de.hybris.platform.storefront.model.impl;
 
+import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
 import de.hybris.platform.servicelayer.search.FlexibleSearchService;
 import de.hybris.platform.storefront.model.BugDAO;
 import de.hybris.platform.storefront.model.BugModel;
 
 import java.util.List;
+
+import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,6 +34,9 @@ public class DefaultBugDAO implements BugDAO
 
 	@Autowired
 	private FlexibleSearchService flexibleSearchService;
+
+	@Resource
+	private ModelService modelService;
 
 	@Override
 	public List<BugModel> findBugList()
@@ -55,5 +61,28 @@ public class DefaultBugDAO implements BugDAO
 
 		return flexibleSearchService.<BugModel> search(query).getResult().get(0);
 	}
+
+	@Override
+	public void addBug(final BugModel bugModel)
+	{
+		modelService.save(bugModel);
+
+	}
+
+	@Override
+	public void editBugByTitle(final String title)
+	{
+		final BugModel bugModel = findBugByTitle(title);
+		modelService.refresh(bugModel);
+	}
+
+	@Override
+	public void deleteBugByTitle(final String title)
+	{
+		final BugModel bugModel = findBugByTitle(title);
+		modelService.remove(bugModel);
+	}
+
+
 
 }

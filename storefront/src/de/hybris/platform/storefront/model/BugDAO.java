@@ -22,4 +22,10 @@ public interface BugDAO
 	public List<BugModel> findBugList();
 
 	public BugModel findBugByTitle(final String title);
+
+	public void addBug(BugModel bugModel);
+
+	public void editBugByTitle(String title);
+
+	public void deleteBugByTitle(String title);
 }

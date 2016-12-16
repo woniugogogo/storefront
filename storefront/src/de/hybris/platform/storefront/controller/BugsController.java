@@ -20,7 +20,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 
 /**
@@ -30,28 +32,65 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BugsController
 {
 
+	@Resource
 	private BugFacade bugFacade;
 
 	@RequestMapping(value = "/bugs")
 	public String showBugs(final Model model)
 	{
 		final List<BugData> bugs = bugFacade.getBugs();
-		System.out.println("----" + bugFacade.getBugs().size());
-		for (int i = 0; i < bugs.size(); i++)
-		{
-			System.out.println("Title:" + bugs.get(i).getTitle() + "Assign:" + bugs.get(i).getAssign() + "Severity:"
-					+ bugs.get(i).getSeverity() + "Desc:" + bugs.get(i).getDesc());
-		}
 		model.addAttribute("bugs", bugs);
 		return "bugList";
 	}
 
-	@Resource
-	public void setBugFacade(final BugFacade bugFacade)
+
+	@RequestMapping(value = "/bugs/show/{bugTitle}")
+	public String showBugDetails(@PathVariable final String bugTitle, final Model model)
 	{
-		this.bugFacade = bugFacade;
+		final BugData bugData = bugFacade.getBugByTitle(bugTitle);
+		model.addAttribute("bugData", bugData);
+		return "viewBug";
 	}
 
+	@RequestMapping(value = "/bugs/edit/{bugTitle}")
+	public String editBug(@PathVariable final String bugTitle, final Model model)
+	{
+		final BugData bugData = bugFacade.getBugByTitle(bugTitle);
+		model.addAttribute("bugData", bugData);
+		return "editBug";
+	}
 
+	@RequestMapping(value = "/bugs/submitEditBug", method = RequestMethod.POST)
+	public String submitEditBug(final BugData bugData)
+	{
+		bugFacade.editBugByTitle(bugData.getTitle(), bugData);
+
+		return "redirect:/bugs";
+	}
+
+	@RequestMapping(value = "/bugs/add")
+	public String addBug()
+	{
+		return "addBug";
+	}
+
+	@RequestMapping(value = "/bugs/submitAddBug", method = RequestMethod.POST)
+	public String submitAddBug()
+	{
+
+		return "redirect:/bugs";
+	}
+
+	@RequestMapping(value = "/bugs/delete/{bugTitle}")
+	public String deleteBug(@PathVariable final String bugTitle)
+	{
+		bugFacade.deleteBugByTitle(bugTitle);
+		return "redirect:/bugs";
+	}
+
+	//	public void setBugFacade(final BugFacade bugFacade)
+	//	{
+	//		this.bugFacade = bugFacade;
+	//	}
 
 }

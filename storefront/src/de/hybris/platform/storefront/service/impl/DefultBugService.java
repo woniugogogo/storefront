@@ -44,4 +44,24 @@ public class DefultBugService implements BugService
 		return bugDAO.findBugByTitle(title);
 	}
 
+	@Override
+	public void addBug(final BugModel bugModel)
+	{
+		bugDAO.addBug(bugModel);
+	}
+
+	@Override
+	public BugModel editBugByTitle(final String title)
+	{
+		return bugDAO.findBugByTitle(title);
+	}
+
+	@Override
+	public void deleteBugByTitle(final String title)
+	{
+		bugDAO.deleteBugByTitle(title);
+	}
+
+
+
 }

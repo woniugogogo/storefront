@@ -24,4 +24,10 @@ public interface BugService
 	public List<BugModel> getBugs();
 
 	public BugModel getBugByTitle(String title);
+
+	public void addBug(BugModel bugModel);
+
+	public BugModel editBugByTitle(String title);
+
+	public void deleteBugByTitle(String title);
 }

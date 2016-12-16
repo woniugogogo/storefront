@@ -6,6 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
+		<title>Bug列表</title>
 		<link rel="stylesheet" href="css/blueprint/screen.css" />
 		<link rel="stylesheet" href="css/blueprint/plugins/buttons/screen.css" />
 		<link rel="stylesheet" href="css/blueprint/plugins/link-icons/screen.css" />
@@ -15,7 +16,7 @@
 		<div class="container">
 			<div id="bug_list">
 				<div id="bug_nav">
-					<a class="button" href="add_bug.jsp">Create A Bug</a>	
+					<a class="button" href="./bugs/add">Create A Bug</a>	
 				</div>
 				
 				<table>
@@ -49,9 +50,9 @@
 								<td>${bug.severity }</td>
 								<td>${bug.desc }</td>
 								<td>
-									<a href="view_bug.html">View</a>
-									<a href="add_bug.html">Edit</a>
-									<a href="javascript:void()">Delete</a>
+									<a href="./bugs/show/${bug.title }" >View</a>
+									<a href="./bugs/edit/${bug.title }" >Edit</a>
+									<a href="./bugs/delete/${bug.title }">Delete</a>
 								</td>
 							</tr>
 						</c:forEach>
