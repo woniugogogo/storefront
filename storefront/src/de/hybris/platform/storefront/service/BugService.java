@@ -27,7 +27,7 @@ public interface BugService
 
 	public void addBug(BugModel bugModel);
 
-	public BugModel editBugByTitle(String title);
+	public void editBug(BugModel bugModel);
 
 	public void deleteBugByTitle(String title);
 }

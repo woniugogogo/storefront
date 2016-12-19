@@ -92,22 +92,22 @@ public class DefaultBugFacade implements BugFacade
 	public void editBugByTitle(final String title, final BugData bugData)
 	{
 		//find bugModel which u want edit
-		final BugModel bm = bugService.editBugByTitle(title);
+		final BugModel bm = bugService.getBugByTitle(title);
+		System.out.println("Facade beforeModeify: ... desc:" + bm.getDesc());
 		//edit
 		bm.setTitle(bugData.getTitle());
 		bm.setAssign(bugData.getAssign());
 		bm.setSeverity(Serverity.valueOf(bugData.getSeverity()));
 		bm.setDesc(bugData.getDesc());
-		bugService.editBugByTitle(title);
+		System.out.println("Facade afterModeify: ... desc:" + bm.getDesc());
+		bugService.editBug(bm);
 	}
 
 	@Override
 	public void deleteBugByTitle(final String title)
 	{
 		bugService.deleteBugByTitle(title);
-
 	}
-
 
 
 }

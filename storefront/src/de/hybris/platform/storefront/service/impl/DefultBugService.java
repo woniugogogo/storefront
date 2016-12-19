@@ -51,9 +51,10 @@ public class DefultBugService implements BugService
 	}
 
 	@Override
-	public BugModel editBugByTitle(final String title)
+	public void editBug(final BugModel bugModel)
 	{
-		return bugDAO.findBugByTitle(title);
+		System.out.println("Service: title:" + bugModel.getTitle() + "... desc:" + bugModel.getDesc());
+		bugDAO.editBug(bugModel);
 	}
 
 	@Override

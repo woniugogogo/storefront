@@ -16,7 +16,7 @@
 		<div class="container">
 			<div id="bug_list">
 				<div id="bug_nav">
-					<a class="button" href="./bugs/add">Create A Bug</a>	
+					<a class="button" href="bugs/add">Create A Bug</a>	
 				</div>
 				
 				<table>
@@ -50,9 +50,9 @@
 								<td>${bug.severity }</td>
 								<td>${bug.desc }</td>
 								<td>
-									<a href="./bugs/show/${bug.title }" >View</a>
-									<a href="./bugs/edit/${bug.title }" >Edit</a>
-									<a href="./bugs/delete/${bug.title }">Delete</a>
+									<a href="bugs/show/${bug.title }" >View</a>
+									<a href="bugs/edit/${bug.title }" >Edit</a>
+									<a href="bugs/delete/${bug.title }">Delete</a>
 								</td>
 							</tr>
 						</c:forEach>

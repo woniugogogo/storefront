@@ -16,14 +16,14 @@
 				<div class="error">Error message</div>
 			</div>
 			<div id="bug_form">
-			<form action="/bugs/submitAddBug" method="post">
+			<form action="./submitAddBug" method="post" id="addBugForm">
 				<p>
 					<label>Title:</label><br />
 					<input type="text" name="title"/>
 				</p>
 				<p>
 					<label>Severity:</label><br />
-					<select>
+					<select name="severity" form="addBugForm">
 						<option>S1</option>
 						<option>S2</option>
 						<option>S3</option>

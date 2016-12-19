@@ -70,9 +70,9 @@ public class DefaultBugDAO implements BugDAO
 	}
 
 	@Override
-	public void editBugByTitle(final String title)
+	public void editBug(final BugModel bugModel)
 	{
-		final BugModel bugModel = findBugByTitle(title);
+		System.out.println("Dao: ... desc:" + bugModel.getDesc());
 		modelService.refresh(bugModel);
 	}
 

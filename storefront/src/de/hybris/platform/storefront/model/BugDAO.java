@@ -25,7 +25,7 @@ public interface BugDAO
 
 	public void addBug(BugModel bugModel);
 
-	public void editBugByTitle(String title);
+	public void editBug(BugModel bugModel);
 
 	public void deleteBugByTitle(String title);
 }
