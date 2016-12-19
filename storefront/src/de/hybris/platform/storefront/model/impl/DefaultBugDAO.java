@@ -73,7 +73,7 @@ public class DefaultBugDAO implements BugDAO
 	public void editBug(final BugModel bugModel)
 	{
 		System.out.println("Dao: ... desc:" + bugModel.getDesc());
-		modelService.refresh(bugModel);
+		modelService.save(bugModel);
 	}
 
 	@Override
