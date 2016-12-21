@@ -25,7 +25,7 @@
 	</bean>
 	
 	<bean class="de.hybris.platform.storefront.data.BugCommentData">
-		<property name="date" type="java.util.Date"/>
+		<property name="date" type="String"/>
 		<property name="commentContent" type="String"/>
 	</bean>
 	

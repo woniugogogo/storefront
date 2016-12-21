@@ -28,4 +28,10 @@ public interface BugDAO
 	public void editBug(BugModel bugModel);
 
 	public void deleteBugByTitle(String title);
+
+	//	Comment
+
+	public List<BugCommentModel> findCommentListByBug(String bugTitle);
+
+	public void addCommmentByBugTitle(BugCommentModel bugCommentModel);
 }

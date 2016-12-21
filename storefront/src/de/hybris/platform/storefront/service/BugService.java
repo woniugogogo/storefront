@@ -11,6 +11,7 @@
  */
 package de.hybris.platform.storefront.service;
 
+import de.hybris.platform.storefront.model.BugCommentModel;
 import de.hybris.platform.storefront.model.BugModel;
 
 import java.util.List;
@@ -30,4 +31,10 @@ public interface BugService
 	public void editBug(BugModel bugModel);
 
 	public void deleteBugByTitle(String title);
+
+	//Comment
+
+	public List<BugCommentModel> findCommentListByBug(String bugTitle);
+
+	public void addCommmentByBugTitle(BugCommentModel bugCommentModel);
 }

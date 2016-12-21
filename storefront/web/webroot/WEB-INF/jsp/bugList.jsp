@@ -7,9 +7,9 @@
 <html>
 	<head>
 		<title>Bug列表</title>
-		<link rel="stylesheet" href="css/blueprint/screen.css" />
-		<link rel="stylesheet" href="css/blueprint/plugins/buttons/screen.css" />
-		<link rel="stylesheet" href="css/blueprint/plugins/link-icons/screen.css" />
+		<link rel="stylesheet" href="resources/css/blueprint/screen.css" />
+		<link rel="stylesheet" href="resources/css/blueprint/plugins/buttons/screen.css" />
+		<link rel="stylesheet" href="resources/css/blueprint/plugins/link-icons/screen.css" />
 	</head>
 	
 	<body>

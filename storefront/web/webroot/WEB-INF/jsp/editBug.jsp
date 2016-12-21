@@ -5,9 +5,9 @@
 <html>
 	<head>
 		<title>编辑Bug</title>
-		<link rel="stylesheet" href="css/blueprint/screen.css" />
-		<link rel="stylesheet" href="css/blueprint/plugins/buttons/screen.css" />
-		<link rel="stylesheet" href="css/blueprint/plugins/link-icons/screen.css" />
+		<link rel="stylesheet" href="resources/css/blueprint/screen.css" />
+		<link rel="stylesheet" href="resources/css/blueprint/plugins/buttons/screen.css" />
+		<link rel="stylesheet" href="resources/css/blueprint/plugins/link-icons/screen.css" />
 	</head>
 	
 	<body>
@@ -61,10 +61,7 @@
 					<textarea name="desc" >${bugData.desc}</textarea>
 				</p>
 				<input type="submit" value="提交"/>
-				<p>
-					<a href="bug_list.html" class="button">Submit</a>
-					<a href="bug_list.html" class="button">Back</a>
-				</p>
+				
 			</form>
 			</div>
 		</div>

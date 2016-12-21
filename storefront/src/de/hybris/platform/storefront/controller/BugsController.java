@@ -11,9 +11,11 @@
  */
 package de.hybris.platform.storefront.controller;
 
+import de.hybris.platform.storefront.data.BugCommentData;
 import de.hybris.platform.storefront.data.BugData;
 import de.hybris.platform.storefront.facade.BugFacade;
 
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -23,6 +25,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.sap.security.core.server.csi.util.URLDecoder;
 
 
 /**
@@ -47,9 +51,24 @@ public class BugsController
 	@RequestMapping(value = "/bugs/show/{bugTitle}", method = RequestMethod.GET)
 	public String showBugDetails(@PathVariable final String bugTitle, final Model model)
 	{
-		final BugData bugData = bugFacade.getBugByTitle(bugTitle);
+		final String title = URLDecoder.decode(bugTitle);
+		final BugData bugData = bugFacade.getBugByTitle(title);
+		final List<BugCommentData> commentList = bugFacade.findCommentListByBug(title);
 		model.addAttribute("bugData", bugData);
+		model.addAttribute("commentList", commentList);
 		return "viewBug";
+	}
+
+	@RequestMapping(value = "/bugs/{bugTitle}/addComment", method = RequestMethod.POST)
+	public String addCommentByBugTitle(@PathVariable final String bugTitle, final BugCommentData bugCommentData)
+	{
+		final String title = URLDecoder.decode(bugTitle);
+		if (bugCommentData != null)
+		{
+			bugFacade.addCommmentByBugTitle(title, bugCommentData);
+		}
+
+		return "redirect:/bugs/show/" + URLEncoder.encode(bugTitle);
 	}
 
 	@RequestMapping(value = "/bugs/edit/{bugTitle}", method = RequestMethod.GET)

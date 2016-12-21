@@ -11,6 +11,7 @@
  */
 package de.hybris.platform.storefront.service.impl;
 
+import de.hybris.platform.storefront.model.BugCommentModel;
 import de.hybris.platform.storefront.model.BugDAO;
 import de.hybris.platform.storefront.model.BugModel;
 import de.hybris.platform.storefront.service.BugService;
@@ -53,7 +54,6 @@ public class DefultBugService implements BugService
 	@Override
 	public void editBug(final BugModel bugModel)
 	{
-		System.out.println("Service: title:" + bugModel.getTitle() + "... desc:" + bugModel.getDesc());
 		bugDAO.editBug(bugModel);
 	}
 
@@ -63,6 +63,16 @@ public class DefultBugService implements BugService
 		bugDAO.deleteBugByTitle(title);
 	}
 
+	@Override
+	public List<BugCommentModel> findCommentListByBug(final String bugTitle)
+	{
+		return bugDAO.findCommentListByBug(bugTitle);
+	}
 
+	@Override
+	public void addCommmentByBugTitle(final BugCommentModel bugCommentModel)
+	{
+		bugDAO.addCommmentByBugTitle(bugCommentModel);
+	}
 
 }

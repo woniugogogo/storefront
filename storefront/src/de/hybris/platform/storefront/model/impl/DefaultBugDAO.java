@@ -14,9 +14,12 @@ package de.hybris.platform.storefront.model.impl;
 import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
 import de.hybris.platform.servicelayer.search.FlexibleSearchService;
+import de.hybris.platform.storefront.model.BugCommentModel;
 import de.hybris.platform.storefront.model.BugDAO;
 import de.hybris.platform.storefront.model.BugModel;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -72,7 +75,6 @@ public class DefaultBugDAO implements BugDAO
 	@Override
 	public void editBug(final BugModel bugModel)
 	{
-		System.out.println("Dao: ... desc:" + bugModel.getDesc());
 		modelService.save(bugModel);
 	}
 
@@ -83,6 +85,32 @@ public class DefaultBugDAO implements BugDAO
 		modelService.remove(bugModel);
 	}
 
+	@Override
+	public List<BugCommentModel> findCommentListByBug(final String bugTitle)
+	{
+
+		final BugModel bugModel = findBugByTitle(bugTitle);
+
+		final List<BugCommentModel> modelList = new ArrayList<BugCommentModel>();
+
+		if (bugModel.getBugComments() != null && bugModel.getBugComments().size() != 0)
+		{
+			final Iterator<BugCommentModel> iterator = bugModel.getBugComments().iterator();
+			while (iterator.hasNext())
+			{
+				final BugCommentModel bugCommentModel = iterator.next();
+				modelList.add(bugCommentModel);
+			}
+		}
+
+		return modelList;
+	}
+
+	@Override
+	public void addCommmentByBugTitle(final BugCommentModel bugCommentModel)
+	{
+		modelService.save(bugCommentModel);
+	}
 
 
 }
